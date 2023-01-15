@@ -18,6 +18,8 @@
 .section .init
 .globl _start
 _start:
-    la sp, _STACK_TOP_  # Load the SP with end of RAM
-    jal prompt          # Jump to prompt()
+    lla sp,  _STACK_TOP_
+    
+    lla t1,  prompt
+    jalr t1             # Jump to prompt()
     j .                 # Spin forever
