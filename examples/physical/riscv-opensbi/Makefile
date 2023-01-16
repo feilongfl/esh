@@ -17,7 +17,7 @@
 TOOLCHAIN_PREFIX   ?= riscv64-linux-gnu-
 
 STARTUP            = riscv64
-RAM_BASE_PHYSICAL  = 0x48000000
+RAM_BASE_PHYSICAL  = 0x45000000
 RAM_SIZE           = 0x4000
 
 # MANDATORY:
