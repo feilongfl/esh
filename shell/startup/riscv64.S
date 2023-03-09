@@ -18,6 +18,10 @@
 .section .init
 .globl _start
 _start:
+    # storage fdt address(a1)
+    lla t0, fdt_load_addr
+    sw  a1, 0(t0)
+
     lla sp,  _STACK_TOP_
     
     lla t1,  prompt

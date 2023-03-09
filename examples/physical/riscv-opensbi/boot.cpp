@@ -24,18 +24,23 @@ void flush_icache(void) {
   asm volatile("fence.i");
 }
 
+extern "C" {
+  unsigned int fdt_load_addr;
+};
+
 /*
  * There can be one or many function with same prototype, exposed as
  * a command on the shell. They can be in same or multiple files.
  */
 int boot(int argc, char **argv) {
   if (argc == 2) {
-    void (*jump)(void) = (void (*)(void))(size_t)atoh(argv[1]);
-    printf("Boot to: 0x%x\n\n", jump);
+    void (*jump)(unsigned int) = (void (*)(unsigned int))(size_t)atoh(argv[1]);
+    printf("Boot to  : 0x%x\n\n", jump);
+    printf("Boot args: 0x%x\n\n", (fdt_load_addr));
     printf("===================\n\n");
 
     flush_icache();
-    jump();
+    jump(fdt_load_addr);
 
     printf("===================\n\n");
     printf("Back from program: 0x%x\n\n", jump);

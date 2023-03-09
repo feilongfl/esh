@@ -407,7 +407,12 @@ void __attribute__((optimize("O0"), weak)) initial_setup(void) {
  *
  */
 void prompt() {
+  extern unsigned int fdt_load_addr;
+  unsigned int fdt_load_addr_tmp = fdt_load_addr;
+
   initial_setup();
+  fdt_load_addr = fdt_load_addr_tmp;
+  
   exec_auto_cmds();
   setup();
 

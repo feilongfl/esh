@@ -43,4 +43,4 @@ debug:
 
 ### gdb: Launches GDB and connects to qemu. To be executed after 'make debug'
 gdb:
-	@gdb-multiarch shell.elf -ex "target remote localhost:1234"
+	@gdb-multiarch shell.elf -ex "target remote localhost:1234" -ex "tui new-layout asmreg {-horizontal asm 3 regs 1} 2 status 0 cmd 1" -ex "layout asmreg" -ex "b *0x80200000" -ex "b *0x80000000"
